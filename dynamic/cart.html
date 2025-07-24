@@ -1,0 +1,129 @@
+{% load static %}
+<header style="background-color: #0f8bc9; padding: 20px; text-align: center; color: white; font-size: 28px; font-weight: bold; letter-spacing: 1px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+    🛒 Your Cart
+</header>
+
+<h4 style="color: rgb(14, 12, 12); font-size: 25px; text-align: center;">{{info}}</h4>
+<div class="product-container">
+    {% for m in cart %}
+    <div class="item">
+        <div style="background-image: url({{m.product.pim.url}});" id="pic"></div>
+        <h2>{{ m.product.pnm }}</h2>
+        <h1>★★★★☆ 4.2 </h1>
+        <h2>Rs {{ m.product.prc }}</h2>
+        <h2>Quantity {{ m.qty }}</h2>
+        <p>{{ m.product.des }}</p>
+        <div class="button-group">
+            <a href="{% url 'cartdelete' m.id %}" id="b1">Remove</a>
+        </div>
+    </div>
+    {% endfor %}
+    {% if cart %}
+    <div>
+        <h2 style="color: rgb(10, 4, 4);font-size: 25px;"> Total Price :{{total}}</h2>
+        <a href="cartpayment" id="b2">Buy</a>
+    </div>
+    {% endif %}
+</div>
+
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #39b7f2, #f3f3ec);
+    overflow-x: hidden;
+}
+
+.product-container {
+    padding: 20px;
+    text-align: center;
+    min-height: 100vh;
+    position: relative;
+}
+
+.item {
+    width: 280px;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 15px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    overflow: hidden;
+}
+
+#pic {
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0 5px;
+    color: #333;
+}
+
+h1 {
+    font-size: 14px;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#b1, #b2 {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-family: 'Georgia', serif;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+#b1 {
+    background-color: #ff9800;
+}
+
+#b1:hover {
+    background-color: #ef1010;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+#b2 {
+    background-color: #28a745;
+}
+
+#b2:hover {
+    background-color: #007bff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+</style>

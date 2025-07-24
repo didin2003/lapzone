@@ -1,0 +1,24 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+<div class="wrapper animated bounce">
+  <br>
+  <br>
+  <br>
+  <br>
+  <h2 style="color: red;">{{ error }}</h2>
+  <h1>LOGIN</h1>
+  <hr>
+  <form method="post">
+    {% csrf_token %}
+    
+    <label id="icon" for="username"><i class="fa fa-user"></i></label>
+    <input type="text" name="usname" placeholder="Username" id="username">
+    <label id="icon" for="password"><i class="fa fa-key"></i></label>
+    <input type="password" name="psword" placeholder="Password" id="password">
+    <input type="submit" value="Sign In">
+    <hr>
+    <div class="crtacc"><a href="register" style="color:white; font-size: 25px">Create Account</a></div>
+    <br>
+  </form>
+</div>

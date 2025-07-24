@@ -1,0 +1,131 @@
+/* General Body Styling */
+body {
+    background: #222D32;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Login Box */
+.login-box {
+    width: 350px;
+    padding: 30px;
+    background: #1A2226;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Login Icon */
+.login-key {
+    height: 100px;
+    font-size: 80px;
+    line-height: 100px;
+    background: linear-gradient(#27EF9F, #0DB8DE);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Login Title */
+.login-title {
+    margin-top: 10px;
+    font-size: 30px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: #ECF0F5;
+}
+
+/* Login Form */
+.login-form {
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    background-color: #1A2226;
+    border: none;
+    border-bottom: 2px solid #0DB8DE;
+    border-radius: 0;
+    font-weight: bold;
+    outline: 0;
+    margin-bottom: 20px;
+    padding: 10px;
+    color: #ECF0F5;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Input Focus Effect */
+input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(13, 184, 222, 0.5);
+    border-bottom: 2px solid #27EF9F;
+}
+
+/* Labels */
+label {
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #A2A4A4;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Buttons */
+.btn-outline-primary {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #0DB8DE;
+    color: #0DB8DE;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    background: transparent;
+    cursor: pointer;
+}
+
+.btn-outline-primary:hover {
+    background-color: #0DB8DE;
+    color: #fff;
+    box-shadow: 0 3px 8px rgba(0, 184, 222, 0.5);
+}
+
+/* Button Container */
+.login-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Text Below Form */
+.login-text {
+    text-align: center;
+    color: #A2A4A4;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 400px) {
+    .login-box {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .login-title {
+        font-size: 25px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        font-size: 14px;
+    }
+}

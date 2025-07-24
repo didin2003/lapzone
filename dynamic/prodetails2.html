@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="image-section"></div>
+        <div class="form-section">
+            <form method="POST" action="{% url 'update' product.id %}">
+                {% csrf_token %}
+                <h2>Edit Product</h2>
+                <input type="text" value="{{ product.pnm }}" name="proname" placeholder="Product Name">
+                <h1>★★★★☆ 4.2</h1>
+                <input type="text" value="{{ product.prc }}" name="proprice" placeholder="Product Price">
+                <textarea name="prodes" placeholder="Product Description">{{ product.des }}</textarea>
+                <div class="button-group">
+                    <button type="submit" id="b1">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<style>
+    body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #39b7f2, #f3f3ec);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    max-width: 900px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.image-section {
+    width: 55%;
+    padding-bottom: 35px;
+    background-image: url('{{ product.pim.url }}');
+    background-size:cover;
+        background-position: center;
+        height: 250px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        padding-top: 10px;
+   
+}
+
+.form-section {
+    width: 60%;
+    padding: 30px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 18px;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+textarea, input[type="text"] {
+    width: 90%;
+    padding: 12px;
+    font-size: 16px;
+    margin: 10px 0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+}
+
+.button-group {
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+#b1 {
+    background-color: blue;
+    color: white;
+}
+
+#b1:hover {
+    background-color: rgb(56, 248, 8);
+}
+
+</style>
+</html>

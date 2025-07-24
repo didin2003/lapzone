@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+
+<div id="bg">
+    <form class="form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 style="color:orange;">{{ success }}</h2>
+        <h2 style="color:red;">{{ error }}</h2>
+        <input type="text" name="rprname" placeholder=" Rent Product Name" class="textbox" required />
+        <input type="text" name="rprprice" placeholder="Price" class="textbox" required />
+        <input type="file" name="rprimage" class="textbox" required />
+        <input type="text" name="rprdetails" placeholder="Details" class="textbox" required />
+        <input type="submit" value="REGISTER" class="button" />
+    </form>
+</div>

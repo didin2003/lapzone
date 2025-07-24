@@ -1,0 +1,56 @@
+
+{% block content %}
+<div class="container">
+    <h2>Assign Technician</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="technician">Select Technician:</label>
+        <select id="technician" name="technician">
+            <option>Techinician 1</option>
+            <option>Techinician 2</option>
+            <option>Techinician 3</option>
+            <option>Techinician 4</option>
+            <option>Techinician 5</option>
+            {% for tech in technicians %}
+                <option value="{{ tech.id }}">{{ tech.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="hidden" name="service_id" value="{{ service_order.id }}">
+        <button type="submit">Assign Technician</button>
+    </form>
+</div>
+
+<style>
+    .container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        margin: 20px auto;
+        text-align: center;
+    }
+    h2 {
+        margin-bottom: 15px;
+    }
+    select, button {
+        width: 100%;
+        padding: 8px;
+        margin-top: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+    button {
+        background: #28a745;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #218838;
+    }
+    body{
+        background: linear-gradient(350deg, #db9913 ,#28a745 );
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% load static %}
+<header class="header">
+    RENTAL ITEMS
+</header>
+
+<div class="product-container">
+    {% for m in ren %}
+    <div class="item">
+        <div class="pic" style="background-image: url({{m.rpim.url}});"></div>
+        <h2>{{ m.rpnm }}</h2>
+        <h2 class="price">Rs {{ m.rprc }}</h2>
+        <p>{{ m.rdes }}</p>
+
+        <a href="{% url 'rent_book' idb=m.id %}" class="book-btn">Book Now</a>
+    </div>
+{% endfor %}
+</div>
+
+
+<style>
+    /* General Styling */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Header */
+    .header {
+        background: purple;
+        padding: 20px;
+        text-align: center;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Product Container */
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    /* Item Card */
+    .item {
+        width: 300px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        padding: 15px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Product Image */
+    .pic {
+        background-size: cover;
+        background-position: center;
+        height: 200px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    /* Title & Price */
+    h2 {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .price {
+        font-size: 22px;
+        color: #007bff;
+        font-weight: bold;
+    }
+
+    /* Description */
+    p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 15px;
+        height: 50px;
+        overflow: hidden;
+    }
+
+    /* Dropdown */
+    .booking-options {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 12px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    /* Book Now Button */
+    .book-btn {
+        background: #28a745;
+        color: white;
+        font-size: 18px;
+        padding: 10px;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.3s;
+    }
+
+    .book-btn:hover {
+        background: #218838;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .product-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>

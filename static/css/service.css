@@ -1,0 +1,99 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background: linear-gradient(135deg, #3498db, #8e44ad);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container Styling */
+.container {
+    background: #fff;
+    padding: 30px;
+    width: 500px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Heading */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label Styling */
+label {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin: 10px 0 5px;
+}
+
+/* Input and Textarea */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: #8e44ad;
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(142, 68, 173, 0.5);
+}
+
+/* Date Input */
+input[type="date"] {
+    cursor: pointer;
+}
+
+/* Button */
+button {
+    background: #8e44ad;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #732d91;
+    box-shadow: 0px 4px 8px rgba(142, 68, 173, 0.3);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

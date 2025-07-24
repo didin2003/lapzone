@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4 style="color: rgb(14, 12, 12); font-size: 25px; text-align: center;">{{info}}</h4>
+    <div class="product-container">
+        {% for m in scart %}
+        <div class="item">
+            <div style="background-image: url({{m.pim.url}});" id="pic"></div>
+            <h2>{{ m.pnm }}</h2>
+            <h1>★★★★☆ 4.2 </h1>
+            <h2>Rs {{ m.prc }}</h2>
+            <p>{{ m.des }}</p>
+            <div class="button-group">
+                <a href="{% url 'edit' m.id %}" id="b1">Edit</a>
+                <a href="#" id="b2">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #39b7f2, #f3f3ec);
+        overflow-x: hidden;
+    }
+    
+    .product-container {
+        padding: 20px;
+        text-align: center;
+        min-height: 100vh;
+        position: relative;
+    }
+    
+    .item {
+        width: 280px;
+        background: linear-gradient(135deg, #ffffff, #f8f9fa);
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        padding: 15px;
+        text-align: center;
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    #pic {
+        background-size: cover;
+        background-position: center;
+        height: 200px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+    
+    h2 {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 15px 0 5px;
+        color: #333;
+    }
+    
+    h1 {
+        font-size: 14px;
+        color: blue;
+        margin-bottom: 10px;
+    }
+    
+    p {
+        font-size: 14px;
+        color: #777;
+        margin-bottom: 20px;
+        height: 50px;
+        overflow: hidden;
+    }
+    
+    .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    
+    #b1, #b2 {
+        display: inline-block;
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        font-family: 'Georgia', serif;
+        padding: 10px 15px;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    #b1 {
+        background-color:blue;
+    }
+    
+    #b1:hover {
+        background-color: rgb(56, 248, 8);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    #b2 {
+        background-color: red;
+    }
+    
+    #b2:hover {
+        background-color: #a83117;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    </style>
+</html>

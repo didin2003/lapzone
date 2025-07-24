@@ -1,0 +1,74 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #344179, #764ba2);
+    background-image: url("https://t4.ftcdn.net/jpg/02/80/81/99/360_F_280819954_LtfzBq11NB2c9UXbf53x2c5SAqfEyLc9.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Form Container */
+#container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    width: 350px;
+}
+
+/* Header */
+header {
+    font-size: 22px;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"] {
+    width: 90%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    outline: none;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* Submit Button */
+input[type="submit"] {
+    width: 100%;
+    background: #ff6f61;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover {
+    background: #ff3b30;
+}
+
+/* Success Message */
+h2 {
+    color: #0f0;
+    font-size: 16px;
+}

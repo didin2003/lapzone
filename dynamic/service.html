@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Service Schedule</title>
+    <link rel="stylesheet" href="{% static 'css/service.css' %}">
+    <html>
+    <body>
+        <div class="container">
+            <h2>Laptop Service Schedule</h2>
+            <form method="post">
+                {% csrf_token %}
+                <label for="item-name">Your Name:</label>
+                <input type="text" id="item-name" name="scu" required>
+
+                <label for="item-name">Item Name:</label>
+                <input type="text" id="item-name" name="itn" required>
+                
+                <label for="issues">Issues:</label>
+                <textarea id="issues" name="iss" rows="4" required></textarea>
+
+                <label for="issues">Address:</label>
+                <textarea id="issues" name="adr" rows="4" required></textarea>
+
+                <label for="item-name">Mobile Number:</label>
+                <input type="text" id="item-name" name="mbnum" required>
+                
+                <label for="date">Date for Picking the item</label>
+                <input type="date" id="date" name="dt" required>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const dateInput = document.getElementById("date");
+                dateInput.addEventListener("focus", function() {
+                    this.showPicker();
+                });
+            });
+        </script>
+    </body>
+    </html>

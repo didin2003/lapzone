@@ -1,0 +1,104 @@
+
+
+<body>
+    <div id="container">
+       <header>CREATE SELLER ACCOUNT</header>
+       <form method="post">
+        {% csrf_token %}
+        <h2 style="color: white;">{{sucess}}</h2>
+          <fieldset>
+             <br/>
+             <input type="text" name="sn" id="username" placeholder="Username" required autofocus>
+             <br/><br/>
+             <input type="email" name="sem" id="email" placeholder="E-mail" required>
+             <br/><br/>
+             <input type="number" name="smb" id="email" placeholder="Mobile Number" required>
+             <br/><br/>
+             <input type="password" name="sps" id="password" placeholder="Password" required>
+             <br/><br/>
+             <input type="password" name="scps" id="confirm-password" placeholder="Confirm Password" required>
+             <br/> <br/> <br/>
+             <label for="submit"></label>
+             <input type="submit" name="submit" id="submit" value="REGISTER">
+          </fieldset>
+       </form>
+    </div>
+    <style>
+        /* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1f1cdb, #7d3115);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Form Container */
+#container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    width: 350px;
+}
+
+/* Header */
+header {
+    font-size: 22px;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"] {
+    width: 90%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    outline: none;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Submit Button */
+input[type="submit"] {
+    width: 100%;
+    background: #df03f3;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover {
+    background: #ff3b30;
+}
+
+/* Success Message */
+h2 {
+    color: #0f0;
+    font-size: 16px;
+}
+
+    </style>
+    
+
+    
+ </body>

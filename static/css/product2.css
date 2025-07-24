@@ -1,0 +1,84 @@
+.item {
+  width: 280px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling for product image */
+#pic {
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* Styling for product name */
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 15px 0 5px;
+  color: #333;
+}
+
+/* Styling for product rating */
+h1 {
+  font-size: 14px;
+  color: #f5a623;
+  margin-bottom: 10px;
+}
+
+/* Styling for product price */
+h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Description styling */
+p {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
+  height: 50px; /* Ensuring consistent height for descriptions */
+  overflow: hidden;
+}
+
+/* Button styling */
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Buy Now button specific */
+#b2 {
+  background-color: #28a745;
+}
+
+#b2:hover {
+  background-color: #218838;
+}

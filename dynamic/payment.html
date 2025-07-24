@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <link rel="stylesheet" href="{% static 'css/payment.css' %}">
+</head>
+<body>
+
+    <div class="payment-container">
+        <h2>Complete Your Payment</h2>
+
+        {% if order %}
+            <div class="amount-section">
+                <h2 style="color:red;">{{ order.product.pnm }}</h2>
+            </div>
+
+            <form action="{% url 'process_payment' %}" method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="amount">TOTAL AMOUNT Rs: {{ order.product.prc }}</label>
+                </div>
+
+                <!-- Card Payment Fields -->
+                <div class="form-group">
+                    <label for="card_number">Card Number</label>
+                    <input type="text" id="card_number" name="card_number" placeholder="1234 5678 9876 5432" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="expiration_date">Expiration Date</label>
+                    <input type="text" id="expiration_date" name="expiration_date" placeholder="MM/YY" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="123" required>
+                </div>
+
+                <!-- UPI Payment Option -->
+                <div class="payment-methods">
+                    <label>Select Payment Method</label><br>
+                    <input type="radio" id="card_payment" name="payment_method" value="card" checked>
+                    <label for="card_payment">Card Payment</label><br>
+
+                    <input type="radio" id="upi_payment" name="payment_method" value="upi">
+                    <label for="upi_payment">UPI Payment</label><br>
+                    
+                    <div id="upi_details" class="hidden">
+                        <div class="form-group">
+                            <label for="upi_id">Enter UPI ID</label>
+                            <input type="text" id="upi_id" name="upi_id" placeholder="yourname@upi">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn">Pay Rs: {{ order.product.prc }}</button>
+                </div>
+            </form>
+
+        {% else %}
+            <p style="color: red;">Product not found!</p>
+        {% endif %}
+
+        <div class="form-group">
+            <button type="button" class="cancel-btn" onclick="window.location.href=''">Cancel</button>
+        </div>
+    </div>
+
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const upiPaymentRadio = document.getElementById('upi_payment');
+    const cardPaymentRadio = document.getElementById('card_payment');
+    const upiDetails = document.getElementById('upi_details');
+    const upiIdInput = document.getElementById('upi_id');
+    const form = document.querySelector("form");
+
+    function toggleUPIFields() {
+        if (upiPaymentRadio.checked) {
+            upiDetails.classList.remove('hidden');
+            upiIdInput.required = true;
+        } else {
+            upiDetails.classList.add('hidden');
+            upiIdInput.required = false;
+        }
+    }
+
+    upiPaymentRadio.addEventListener('change', toggleUPIFields);
+    cardPaymentRadio.addEventListener('change', toggleUPIFields);
+    toggleUPIFields();
+
+    form.addEventListener("submit", function (event) {
+        if (upiPaymentRadio.checked) {
+            const upiId = upiIdInput.value.trim();
+            if (!upiId.includes("@")) {
+                alert("Please enter a valid UPI ID.");
+                event.preventDefault();
+            }
+        }
+    });
+});
+</script>
+</html>

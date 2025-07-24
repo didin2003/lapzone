@@ -1,0 +1,132 @@
+{% load static %}
+<header style="background-color:white; padding: 20px; text-align: left; color: green; font-size: 35px; font-weight: bold; letter-spacing: 1px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); font-family: 'Times New Roman', Times, serif;">
+    SHOP
+{% if not request.session.idl %}
+<h1 style="color: red; font-family: 'Times New Roman', Times, serif; font-size: 20px;">Please login to buy products</h1>
+{% endif %}
+</header>
+
+{% if messages %}
+{% for msg in messages %}
+<h1 style="color:black; font-size: 20px;">{{msg}}</h1>
+{% endfor %}
+{% endif %}
+<div class="product-container">
+    {% for m in data %}
+    <div class="item">
+        <div style="background-image: url({{m.pim.url}});" id="pic"></div>
+        <h2>{{ m.pnm }}</h2>
+        <h1>★★★★☆ 4.2 </h1>
+        <h2>Rs {{ m.prc }}</h2>
+        <p>{{ m.des }}</p>
+        <div class="button-group">
+            {% if request.session.idl %}
+            <a href="{% url 'cart' m.id %}" id="b1">Add to Cart</a>
+            
+            <a href="{% url 'buy' m.id %}" id="b2">Buy Now</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #327fdc, #e3e37f);
+    overflow-x: hidden;
+}
+
+.product-container {
+    padding: 20px;
+    text-align: center;
+    min-height: 100vh;
+    position: relative;
+}
+
+.item {
+    width: 280px;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 15px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    overflow: hidden;
+}
+
+#pic {
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0 5px;
+    color: #333;
+}
+
+h1 {
+    font-size: 14px;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#b1, #b2 {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-family: 'Georgia', serif;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+#b1 {
+    background-color: #ff9800;
+}
+
+#b1:hover {
+    background-color: #e68900;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+#b2 {
+    background-color: #28a745;
+}
+
+#b2:hover {
+    background-color: #007bff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+</style>

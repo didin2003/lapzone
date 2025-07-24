@@ -1,0 +1,91 @@
+{% load static %}
+<div class="table-container">
+    <h1>EDIT DETAILS</h1>
+    <form method="post" >
+        {% csrf_token %}
+    <table>
+        <tr>
+            <th>ID No</th>
+            <th>Full Name</th>
+            <th>Mobile Number</th>
+            <th>E-mail</th>
+            <th>Password</th>
+            <th> Confirm Password</th>
+            <th>Action</th>
+            
+        </tr>
+        <tr>
+            
+            <td>{{edit.id}}</td>
+            <td> <input type="text" value="{{edit.fname}}" name="cn" ></td>
+            <td><input type="text" value="{{edit.mobile}}" name="cm"> </td>
+            <td><input type="text" value="{{edit.email}}" name="ce" ></td>
+            <td><input type="text" value="{{edit.pssw}}" name="cp" ></td>
+            <td><input type="text" value="{{edit.cpssw}}" name="ccp"></td>
+            <td><button class="edit-btn">UPDATE</button></td>
+           
+        </tr>
+    </table>
+    </form>
+</div>
+<style>
+    .table-container {
+    background:black;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+body{
+    background-color: black;
+}
+h1{
+    color: white;
+    text-align: center;
+}
+
+.table-container h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #bdc3c7;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
+
+th {
+    background: #2980b9;
+    color: white;
+}
+.edit-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #0632f4; 
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition:  0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #0ff644; 
+}
+input{
+    font-size: 15PX;
+}
+</style>

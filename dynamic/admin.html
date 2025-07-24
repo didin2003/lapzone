@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .charts-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .charts-container div {
+            text-align: center;
+        }
+        .charts-container canvas {
+            max-width: 300px;
+            max-height: 300px;
+        }
+        .chart-label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="{% url 'reg_cus' %}">Users</a></li>
+            <li><a href="{% url 'reg_pro' %}">Products</a></li>
+            <li><a href="{% url 'reg_buy' %}">Orders</a></li>
+            <li><a href="{% url 'reg_ser' %}">Service Orders</a></li>
+            <li><a href="{% url 'reg_rent' %}">Rental Orders</a></li>
+            <li><a href="{% url 'addproducts' %}">Add Products</a></li>
+            <li><a href="{% url 'addrentproduct' %}">Add Rental Products</a></li>
+            <li><a href="{% url 'prodetails' %}">View Products</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="{% url 'adm_logout' %}">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h2>Dashboard</h2>
+        </header>
+        
+        <div class="cards">
+            <div class="card"><h3>Total Users</h3><p>{{ total_users }}</p></div>
+            <div class="card"><h3>Total Products</h3><p>{{ total_products }}</p></div>
+            <div class="card"><h3>Total Orders</h3><p>{{ total_sales }}</p></div>
+            <div class="card"><h3>Service Orders</h3><p>{{ total_services }}</p></div>
+            <div class="card"><h3>Rental Orders</h3><p>{{ total_rentals }}</p></div>
+        </div>
+
+        
+        <br><br>
+        <h1>REPORTS</h1>
+
+        <div class="charts-container">
+            <div>
+                <canvas id="salesChart"></canvas>
+                <p class="chart-label">Sales Report</p>
+            </div>
+            <div>
+                <canvas id="rentChart"></canvas>
+                <p class="chart-label">Rent Report</p>
+            </div>
+            <div>
+                <canvas id="serviceChart"></canvas>
+                <p class="chart-label">Service Report</p>
+            </div>
+            <div>
+                <canvas id="overallChart"></canvas>
+                <p class="chart-label">Overall Report</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pass Data from Django to JavaScript -->
+    <script id="salesData" type="application/json">{{ total_sales }}</script>
+    <script id="rentalData" type="application/json">{{ total_rentals }}</script>
+    <script id="serviceData" type="application/json">{{ total_services }}</script>
+    <script id="overallData" type="application/json">{{ total_sales|add:total_rentals|add:total_services }}</script>
+
+    <script>
+        function getData(id) {
+            return JSON.parse(document.getElementById(id).textContent);
+        }
+
+        // Fetch Data from Django
+        const salesAchieved = getData("salesData");
+        const rentalAchieved = getData("rentalData");
+        const serviceAchieved = getData("serviceData");
+        const overallAchieved = getData("overallData");
+
+        // Define Target = 100 for all
+        const target = 50;
+        const Overall = 150;
+
+        // Chart Options
+        const chartOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        };
+
+        // Sales Pie Chart (Achieved vs Remaining)
+        new Chart(document.getElementById('salesChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Achieved', 'Remaining'],
+                datasets: [{
+                    data: [salesAchieved, target - salesAchieved],
+                    backgroundColor: ['#4CAF50', '#E0E0E0']
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Rental Pie Chart (Achieved vs Remaining)
+        new Chart(document.getElementById('rentChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Achieved', 'Remaining'],
+                datasets: [{
+                    data: [rentalAchieved, target - rentalAchieved],
+                    backgroundColor: ['#FFC107', '#E0E0E0']
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Service Pie Chart (Achieved vs Remaining)
+        new Chart(document.getElementById('serviceChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Achieved', 'Remaining'],
+                datasets: [{
+                    data: [serviceAchieved, target - serviceAchieved],
+                    backgroundColor: ['#2196F3', '#E0E0E0']
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Overall Pie Chart (Achieved vs Remaining)
+        new Chart(document.getElementById('overallChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Achieved', 'Remaining'],
+                datasets: [{
+                    data: [overallAchieved, Overall - overallAchieved],
+                    backgroundColor: ['#9C27B0', '#E0E0E0']
+                }]
+            },
+            options: chartOptions
+        });
+    </script>
+
+</body>
+</html>

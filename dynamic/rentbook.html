@@ -1,0 +1,169 @@
+<!-- {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Laptop Booking - {{ selected_rent.rpnm }}</title>
+    <link rel="stylesheet" href="{% static 'css/rentbook.css' %}">
+</head>
+<body>
+    <div class="header">
+        <h1>Laptop Rental Service</h1>
+    </div>
+    
+    <div class="container">
+        <h2>Rental Laptop Booking</h2>
+
+        {% if selected_rent %}
+        <div class="item">
+            <h1 id="rpnm">{{ selected_rent.rpnm }}</h1>
+            <h2 id="rprc" class="price">Rs {{ selected_rent.rprc }}</h2>
+        </div>
+        {% else %}
+        <h3 style="color: red;">No rental item selected.</h3>
+        {% endif %}
+
+        <form method="post" >
+            {% csrf_token %}
+            <h1 style="color: red;">{{ error }}</h1>
+            <h1 style="color: green;">{{ success }}</h1>
+        
+            <label for="rn">Full Name</label>
+            <input type="text" id="rn" name="rn" required>
+            
+            <label for="radd">Address</label>
+            <textarea id="radd" name="radd" required></textarea>
+            
+            <label for="raa">Aadhar Number</label>
+            <input type="text" id="raa" name="raa" pattern="\d{12}" title="Enter a valid 12-digit Aadhar number" required>
+            
+            <label for="rm">Mobile Number</label>
+            <input type="text" id="rm" name="rm" pattern="\d{10}" title="Enter a valid 10-digit mobile number" required>
+        
+            <label for="rental_date">Select Rental Start Date</label>
+            <input type="date" id="rental_date" name="rd" required>
+            
+            <label for="rmo">Select Rental Duration (Months)</label>
+            <select class="booking-options" id="rmo" name="rmo" required>
+                <option disabled selected>Select Months</option>
+                {% for i in months %}
+                    <option value="{{ i }}">{{ i }} Month{% if i != 1 %}s{% endif %}</option>
+                {% endfor %}
+            </select>
+        
+            <h3 id="total_price">Total Price: Rs {{ selected_rent.rprc }}</h3>
+        
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let selectBox = document.querySelector(".booking-options");
+            let priceTag = document.querySelector("#rprc");
+            let totalPriceTag = document.querySelector("#total_price");
+            let basePrice = parseFloat(priceTag.textContent.replace("Rs", "").trim());
+
+            selectBox.addEventListener("change", function () {
+                let months = parseInt(this.value);
+                if (!isNaN(months)) {
+                    totalPriceTag.textContent = "Total Price: Rs " + (basePrice * months);
+                }
+            });
+
+            // Set min date for rental start date to today
+            let today = new Date().toISOString().split('T')[0];
+            document.getElementById("rental_date").setAttribute("min", today);
+        });
+    </script>
+</body>
+</html>
+ -->
+
+
+ {% load static %}
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Rental Laptop Booking - {{ selected_rent.rpnm }}</title>
+     <link rel="stylesheet" href="{% static 'css/rentbook.css' %}">
+ </head>
+ <body>
+     <div class="header">
+         <h1>Laptop Rental Service</h1>
+     </div>
+     
+     <div class="container">
+         <h2>Rental Laptop Booking</h2>
+ 
+         {% if selected_rent %}
+         <div class="item">
+             <h1 id="rpnm">{{ selected_rent.rpnm }}</h1>
+             <h2 id="rprc" class="price">Rs {{ selected_rent.rprc }}</h2>
+         </div>
+         {% else %}
+         <h3 style="color: red;">No rental item selected.</h3>
+         {% endif %}
+ 
+         <form method="post">
+             {% csrf_token %}
+             <h1 style="color: red;">{{ error }}</h1>
+             <h1 style="color: green;">{{ success }}</h1>
+         
+             <label for="rn">Full Name</label>
+             <input type="text" id="rn" name="rn" required>
+             
+             
+             <label for="radd">Address</label>
+             <textarea id="radd" name="radd" required></textarea>
+             
+             <label for="raa">Aadhar Number</label>
+             <input type="text" id="raa" name="raa" pattern="\d{12}" title="Enter a valid 12-digit Aadhar number" required>
+             
+             <label for="rm">Mobile Number</label>
+             <input type="text" id="rm" name="rm" pattern="\d{10}" title="Enter a valid 10-digit mobile number" required>
+         
+             <label for="rental_date">Select Rental Start Date</label>
+             <input type="date" id="rental_date" name="rd" required>
+             <input type="hidden" name="rpnm" value="{{ selected_rent.rpnm }}">
+             
+             <label for="rmo">Select Rental Duration (Months)</label>
+             <select class="booking-options" id="rmo" name="rmo" required>
+                 <option disabled selected>Select Months</option>
+                 {% for i in months %}
+                     <option value="{{ i }}">{{ i }} Month{% if i != 1 %}s{% endif %}</option>
+                 {% endfor %}
+             </select>
+         
+             <h3 id="total_price">Total Price: Rs {{ selected_rent.rprc }}</h3>
+         
+             <button type="submit">Submit</button>
+         </form>
+     </div>
+ 
+     <script>
+         document.addEventListener("DOMContentLoaded", function () {
+             let selectBox = document.querySelector("#rmo");  // Ensure correct ID is used
+             let priceTag = document.querySelector("#rprc");
+             let totalPriceTag = document.querySelector("#total_price");
+             let basePrice = parseFloat(priceTag.textContent.replace("Rs", "").trim());
+ 
+             selectBox.addEventListener("change", function () {
+                 let months = parseInt(this.value);
+                 if (!isNaN(months)) {
+                     let finalAmount = basePrice * months;
+                     totalPriceTag.textContent = "Total Price: Rs " + finalAmount;
+                 }
+             });
+ 
+             // Set min date for rental start date to today
+             let today = new Date().toISOString().split('T')[0];
+             document.getElementById("rental_date").setAttribute("min", today);
+         });
+     </script>
+ </body>
+ </html>
+ 

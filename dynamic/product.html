@@ -1,0 +1,26 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+
+<div class="header">
+    <a class="mh">PRODUCT MANAGEMENT</a>
+
+    <a href="sellercart" class="ch">View your Products</a>
+
+    
+
+</div>
+
+<div id="bg">
+    <form class="form" method="post" enctype="multipart/form-data">
+        <h1>Add Your Products</h1>
+        {% csrf_token %}
+        <h2 style="color:orange;">{{ success }}</h2>
+        <h2 style="color:red;">{{ error }}</h2>
+        <input type="text" name="prname" placeholder="Product Name" class="textbox" required />
+        <input type="text" name="prprice" placeholder="Price" class="textbox" required />
+        <input type="file" name="primage" class="textbox" required />
+        <input type="text" name="prdetails" placeholder="Details" class="textbox" required />
+        <input type="submit" value="REGISTER" class="button" />
+    </form>
+
+</div>
