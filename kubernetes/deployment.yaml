@@ -1,11 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lapzone-deployment
+  name: lapzone
 spec:
   replicas: 2
-  strategy:
-    type: RollingUpdate
   selector:
     matchLabels:
       app: lapzone
@@ -14,8 +12,8 @@ spec:
       labels:
         app: lapzone
     spec:
-      containers:
-      - name: lapzone-container
-        image: didin8080/lapzone
-        ports:
-        - containerPort: 8000
+     containers:
+       - name: django
+         image: didin8080/lapzone:latest
+         ports:
+           - containerPort: 8000
