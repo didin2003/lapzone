@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: lapzone-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: lapzone
   ports:
