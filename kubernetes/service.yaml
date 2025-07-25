@@ -3,11 +3,10 @@ kind: Service
 metadata:
   name: lapzone-service
 spec:
-  type: NodePort
   selector:
     app: lapzone
   ports:
     - protocol: TCP
       port: 80
       targetPort: 8000
-      nodePort: 30222
+  type: LoadBalancer
