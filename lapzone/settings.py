@@ -37,8 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
-    'clearcache',
     'userapp',
 ]
 
@@ -83,23 +81,6 @@ DATABASES = {
     }
 }
 
-#A list of HTTP verbs that are allowed for the actual request
-
-CORS_ALLOW_METHODS = (
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-)
-
-from corsheaders.defaults import default_methods
-
-CORS_ALLOW_METHODS = (
-    *default_methods,
-    "POKE",
-)
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 

@@ -24,7 +24,3 @@ urlpatterns = [
     path('',include('userapp.urls'))
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
-urlpatterns = [
-    path('admin/clearcache/', include('clearcache.urls')),
-    path('admin/', admin.site.urls),
-]
