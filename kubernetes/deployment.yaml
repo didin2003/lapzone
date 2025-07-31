@@ -15,5 +15,7 @@ spec:
      containers:
        - name: lapzone-container
          image: didin8080/lapzone:latest
+     imagePullSecrets:
+       - name: regcred
          ports:
            - containerPort: 8000
